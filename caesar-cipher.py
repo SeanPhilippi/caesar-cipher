@@ -29,12 +29,14 @@ def get_decryption_key(key):
 	return dkey
 	
 
+# this is done by your enemy
 key = generate_key(3)
-dkey = get_decryption_key(key)
-
-
+print(key)
 message = 'YOU ARE AWESOME'
 cipher = encrypt(key, message)
-print(cipher)
-decrypted_cipher = encrypt(dkey, cipher)
-print(decrypted_cipher)
+
+# this is us breaking the cipher
+for i in range(1, 26):
+	dkey = generate_key(i)
+	message = encrypt(dkey, cipher)
+	print(i, message)
