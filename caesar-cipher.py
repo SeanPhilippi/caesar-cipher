@@ -21,8 +21,20 @@ def encrypt(key, message):
 			cipher += char
 	return cipher
 
+
+def get_decryption_key(key):
+	dkey = {}
+	for char in key:
+		dkey[key[char]] = char
+	return dkey
+	
+
 key = generate_key(3)
+dkey = get_decryption_key(key)
+
 
 message = 'YOU ARE AWESOME'
 cipher = encrypt(key, message)
 print(cipher)
+decrypted_cipher = encrypt(dkey, cipher)
+print(decrypted_cipher)
