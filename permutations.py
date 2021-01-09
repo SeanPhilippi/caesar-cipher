@@ -12,4 +12,7 @@ def counter(n):
 		cnt += 1
 	return cnt
 
-cProfile.run('counter(faculty(12))')
+print('faculty', faculty(8))
+print('through counter', counter(faculty(8)))
+
+cProfile.run('counter(faculty(8))')
