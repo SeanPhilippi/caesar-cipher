@@ -25,7 +25,13 @@ letter_count = 0
 for ch in cipher:
 	if ch in freq:
 		freq[ch] += 1
-	letter_count += 1
+		letter_count += 1
 
+new_line_count = 0
 
-
+for ch in freq:
+	freq[ch] = round(freq[ch]/letter_count, 4)
+	print(f'{ch} : {freq[ch]} ', end='')
+	if new_line_count % 3 == 2:
+		print()
+	new_line_count += 1
