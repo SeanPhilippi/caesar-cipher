@@ -14,24 +14,33 @@ bpmb bpr xjhhjcwko wi bpr sujsru msshwvmbwjk mkd
 wkbrusurbmbwjk w jxxru yt bprjuwri wk bpr pjsr bpmb bpr
 riirkvr jx jqwkmcmk qmumbr cwhh urymwk wkbmvb"""
 
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-freq = {}
+class Attack:
+	def __init__(self):
+		self.alphabet = "abcdefghijklmnopqrstuvwxyz"
+		self.freq = {}
 
-for ch in alphabet:
-	freq[ch] = 0
+	def calculate_freq(self, cipher):
+		for ch in self.alphabet:
+			self.freq[ch] = 0
 
-letter_count = 0
+		letter_count = 0
+		for ch in cipher:
+			if ch in self.freq:
+				self.freq[ch] += 1
+				letter_count += 1
 
-for ch in cipher:
-	if ch in freq:
-		freq[ch] += 1
-		letter_count += 1
+		for ch in self.freq:
+			self.freq[ch] = round(self.freq[ch]/letter_count, 4)
 
-new_line_count = 0
-
-for ch in freq:
-	freq[ch] = round(freq[ch]/letter_count, 4)
-	print(f'{ch} : {freq[ch]} ', end='')
-	if new_line_count % 3 == 2:
+	def print_freq(self):
+		new_line_count = 0
+		for ch in self.freq:
+			print(f'{ch} : {self.freq[ch]} ', end='')
+			if new_line_count % 3 == 2:
+				print()
+			new_line_count += 1
 		print()
-	new_line_count += 1
+
+attack = Attack()
+attack.calculate_freq(cipher)
+attack.print_freq()
