@@ -56,7 +56,9 @@ class Attack:
 				# create hash with alphabet as keys, assign to each letter the absolute value of
 				# the difference between the cipher freq and the eng freq
 				map[plain_char] = round(abs(self.freq[cipher_char] - self.freq_eng[plain_char]), 4)
-			# at each cipher char key assign the items of the 
+			# create key for each letter in alphabet is mappings dict
+			# assign to each letter key the items from map dict, sorted by the difference values (index 1 in the items tuples)
+			# print('map.items()', map.items())
 			self.mappings[cipher_char] = sorted(map.items(), key=operator.itemgetter(1))
 
 attack = Attack()
@@ -65,4 +67,5 @@ attack.print_freq()
 attack.calc_matches()
 
 for ch in attack.mappings:
+# print each character key and the list of tuples showing the match %s, lower % means smaller difference, so greater match
 	print(ch, attack.mappings[ch])
